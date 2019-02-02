@@ -1,41 +1,42 @@
 let mobilenet;
-let puffin;
+let video;
+let label = '';
 
-function modelReady(){
-    console.log('model is ready!!!');
-    mobilenet.predict(puffin, gotResult);
+function modelReady() {
+    //  console.log('model is ready!!!');
+    mobilenet.predict(gotResult);
 }
 
-function imageReady(){
-    image(puffin,0,0,width,height);
-}
 
-function gotResult(error, results){
+
+function gotResult(error, results) {
     if (error) {
         console.error(error);
-    }else{
-        console.log(results);
-        let label = results[0].className;
-        let prob = results[0].probability;
-        fill(0);
-        textSize(64);
-        text(label, 10, height-100);
-        createP(label);
-        createP(prob);
+    } else {
+        // console.log(results);
+        label = results[0].className;
+        mobilenet.predict(gotResult);
     }
 }
 
-function setup(){
-    createCanvas(640, 480);
+function setup() {
+    createCanvas(640, 550);
 
-    // 使用p5中的函数来载入图片
+    // 使用p5中的函数来获取视频信息
     // 通过callback函数让图片显示在画布中
-    puffin = createImg('images/puffin.jpg', imageReady);
-    puffin.hide();
-
+    video = createCapture(VIDEO);
+    video.hide();
     background(0);
 
     // 使用ml5自带的函数，载入机器学习模型MobileNet
     // 当该机器学习模型载入成功后调用callback函数
-    mobilenet = ml5.imageClassifier('MobileNet', modelReady);
+    mobilenet = ml5.imageClassifier('MobileNet', video, modelReady);
+}
+
+function draw() { // put the video in the canvas and put the text on the bottom
+    background(0);
+    image(video, 0, 0);
+    fill(255);
+    textSize(32);
+    text(label, 10, height - 20);
 }
