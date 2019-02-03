@@ -1,16 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ML-gersture</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
-    <script src="https://unpkg.com/ml5@0.1.3/dist/ml5.min.js"></script>
-    <script src="sketch.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./lib/uikit/uikit.min.css">
+    <script src="./lib/uikit/uikit.min.js"></script>
+    <script src="./lib/uikit/uikit-icons.min.js"></script>
+    <script src="./lib/ml5/ml5.min.js"></script>
 </head>
+
+<style>
+
+</style>
+
 <body>
-    
+
+    <!-- navbar -->
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active"><a href="#">ML Simulator</a></li>
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="#">Parent</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-active"><a href="#">Active</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- VideoInput -->
+    <div id="video-section" class="uk-flex uk-flex-center">
+        <div class="uk-card uk-card-default uk-card-body  uk-card-hove">
+            <h3 class="uk-card-title">Input</h3>
+            <p>
+                <video id="video" width="440" height="380" autoplay></video>
+            </p>
+            <div class="uk-alert-primary" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <h6><span id="loading">Loading base model...</span> | <span id="videoStatus">Loading video...</span></h6>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Collect Data -->
+    <div class="uk-section uk-section-muted">
+        <div class="uk-container">
+
+            <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body uk-card-hove">
+                        <h3 class="uk-card-title">Dataset A</h3>
+                        <p>
+                            <button id="catButton">Add Cat Image</button>
+                            <p><span id="amountOfCatImages">0</span> Cat Images</p>
+                            <progress id="js-progressbar" class="uk-progress" value="10" max="100"></progress>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body uk-card-hove">
+                        <h3 class="uk-card-title">Dataset B</h3>
+                        <p>
+                            <button id="dogButton">Add Dog Image</button>
+                            <p><span id="amountOfDogImages">0</span> Dog Images</p>
+                            <progress id="js-progressbar" class="uk-progress" value="10" max="100"></progress>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body uk-card-hove">
+                        <h3 class="uk-card-title">Dataset C</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <progress id="js-progressbar" class="uk-progress" value="10" max="100"></progress>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Training -->
+    <div class="uk-section uk-section-default">
+        <div class="uk-container">
+
+            <div class="uk-grid-match uk-child-width-1-1@m" uk-grid>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">
+                        <h3>Training</h3>
+
+                        <br />
+                        <p><button id="train">Train</button><span id="loss"></span></p>
+                        <br />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Output -->
+    <div class="uk-section uk-section-muted">
+
+
+
+        <div class="uk-container">
+
+            <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body uk-card-hove">
+                        <h3 class="uk-card-title">Output A</h3>
+                        <p>
+                            <button id="predict">Start guessing!</button><br>
+                            My guess is: <span id="result">...</span>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body uk-card-hove">
+                        <h3 class="uk-card-title">Output B</h3>
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body uk-card-hove">
+                        <h3 class="uk-card-title">Output C</h3>
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    <script src="./scripts/retrain.js"></script>
 </body>
+
+
 </html>
