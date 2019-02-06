@@ -27,14 +27,14 @@ h6 {
 
 #canvas-container {
     overflow-y: auto;
-    width: 200px;
-    height: 200px;
+    width: 210px;
+    height: 210px;
     margin: 0 auto;
     outline: black 3px solid;
 }
 
 canvas {
     outline: black 3px solid;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
 }
