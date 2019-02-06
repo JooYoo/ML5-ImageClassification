@@ -2,10 +2,11 @@
 var video = document.getElementById('video');
 var videoStatus = document.getElementById('videoStatus');
 var loading = document.getElementById('loading');
-var catButton = document.getElementById('catButton');
-var dogButton = document.getElementById('dogButton');
+var blueButton = document.getElementById('blueButton');
+var redButton = document.getElementById('redButton');
+var blackButton = document.getElementById('blackButton');
 // var amountOfCatImages = document.getElementById('amountOfCatImages');
-var amountOfDogImages = document.getElementById('amountOfDogImages');
+// var amountOfRedImages = document.getElementById('amountOfRedImages');
 var train = document.getElementById('train');
 var loss = document.getElementById('loss');
 var result = document.getElementById('result');
@@ -20,7 +21,6 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     video.srcObject=stream;
     video.play();
     console.log('video play!!!!')
-    console.log(video.srcObject);
   });
 }
 
@@ -44,23 +44,29 @@ function videoReady() {
   videoStatus.innerText = 'Video ready!';
 }
 
-// When the Cat button is pressed, add the current frame
-// from the video with a label of cat to the classifier
-catButton.onclick = function () {
-  classifier.addImage('cat');
-  // amountOfCatImages.innerText = Number(amountOfCatImages.innerText) + 1;
+// BLUE_btn:  
+// press to add current frame with a label of blue to the classifier
+blueButton.onclick = function () {
+  classifier.addImage('blue');
 }
 
-// When the Cat button is pressed, add the current frame
-// from the video with a label of cat to the classifier
-dogButton.onclick = function () {
-  classifier.addImage('dog');
-  amountOfDogImages.innerText = Number(amountOfDogImages.innerText) + 1;
+// RED_btn:
+// press to add current frame with a label of red to the classifier
+redButton.onclick = function () {
+  classifier.addImage('red');
 }
 
-// When the train button is pressed, train the classifier
-// With all the given cat and dog images
+// BLACK_btn:
+// press to add current frame with a label of black to the classifier
+blackButton.onclick = function () {
+  classifier.addImage('black');
+}
+
+
+// TRAIN_btn: 
+// train the classifier with all the given images
 train.onclick = function () {
+  console.log(classifier)
   classifier.train(function(lossValue) {
     if (lossValue) {
       totalLoss = lossValue;
@@ -78,10 +84,12 @@ function gotResults(err, data) {
     console.error(err);
   }
   result.innerText = data;
+ 
   classifier.classify(gotResults);
 }
 
 // Start predicting when the predict button is clicked
 predict.onclick = function () {
   classifier.classify(gotResults);
+  console.log()
 }

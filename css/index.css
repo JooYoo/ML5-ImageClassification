@@ -25,7 +25,9 @@ h6 {
     margin-top: 30px;
 }
 
-#canvas-container {
+
+
+.canvas-container{
     overflow-y: auto;
     width: 210px;
     height: 210px;
@@ -37,4 +39,8 @@ canvas {
     outline: black 3px solid;
     width: 70px;
     height: 70px;
+}
+
+#train{
+    height: 80px;
 }
