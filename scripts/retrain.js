@@ -4,7 +4,7 @@ var videoStatus = document.getElementById('videoStatus');
 var loading = document.getElementById('loading');
 var catButton = document.getElementById('catButton');
 var dogButton = document.getElementById('dogButton');
-var amountOfCatImages = document.getElementById('amountOfCatImages');
+// var amountOfCatImages = document.getElementById('amountOfCatImages');
 var amountOfDogImages = document.getElementById('amountOfDogImages');
 var train = document.getElementById('train');
 var loss = document.getElementById('loss');
@@ -20,6 +20,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     video.srcObject=stream;
     video.play();
     console.log('video play!!!!')
+    console.log(video.srcObject);
   });
 }
 
@@ -47,7 +48,7 @@ function videoReady() {
 // from the video with a label of cat to the classifier
 catButton.onclick = function () {
   classifier.addImage('cat');
-  amountOfCatImages.innerText = Number(amountOfCatImages.innerText) + 1;
+  // amountOfCatImages.innerText = Number(amountOfCatImages.innerText) + 1;
 }
 
 // When the Cat button is pressed, add the current frame
