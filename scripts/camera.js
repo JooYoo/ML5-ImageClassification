@@ -3,16 +3,6 @@ var amountOfRedImages = document.getElementById('amountOfRedImages');
 var amountOfBlackImages = document.getElementById('amountOfBlackImages');
 
 
-
-// get stream from cam
-// if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-//     navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-//         video.srcObject = stream;
-//         video.play();
-//         console.log('video play!!!!')
-//     });
-// }
-
 // screenshot: BLUE
 function takeScreenshotBlue() {
     let canvas = document.createElement('canvas');
