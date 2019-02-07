@@ -44,3 +44,7 @@ canvas {
 #train{
     height: 80px;
 }
+
+#predict{
+    height: 80px;
+}
