@@ -14,12 +14,23 @@ var predict = document.getElementById('predict');
 let totalLoss = 0;
 
 // Create a webcam capture
-if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-  navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-    video.srcObject = stream;
-    video.play();
+// if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+//   navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+//       video.srcObject = stream;
+//       video.play();
+//       console.log('video play!!!!')
+//   });
+// }
+
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  // Not adding `{ audio: true }` since only want video now
+  navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+      //video.src = window.URL.createObjectURL(stream);
+       video.srcObject = stream;
+      video.play();
   });
 }
+
 
 // Extract the already learned features from MobileNet
 // 默认课以区分两个category
@@ -29,9 +40,10 @@ const featureExtractor = ml5.featureExtractor('MobileNet', { numClasses: 3 }, fu
 });
 
 // Create a new classifier using those features
-const classifier = featureExtractor.classification( video, function () {
+const classifier = featureExtractor.classification( video, videoReady);
+function videoReady () {
   videoStatus.innerText = 'Video ready!';
-});
+}
 
 
 // BLUE_btn:  
