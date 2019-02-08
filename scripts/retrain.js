@@ -22,7 +22,9 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 }
 
 // Extract the already learned features from MobileNet
+// 默认课以区分两个category
 const featureExtractor = ml5.featureExtractor('MobileNet', { numClasses: 3 }, function () {
+  // const featureExtractor = ml5.featureExtractor('MobileNet', function () {
   loading.innerText = 'Model loaded!';
 });
 
@@ -36,18 +38,21 @@ const classifier = featureExtractor.classification( video, function () {
 // press to add current frame with a label of blue to the classifier
 blueButton.onclick = function () {
   classifier.addImage('blue');
+  console.log('add Blue')
 }
 
 // RED_btn:
 // press to add current frame with a label of red to the classifier
 redButton.onclick = function () {
   classifier.addImage('red');
+  console.log('add Red')
 }
 
 // BLACK_btn:
 // press to add current frame with a label of black to the classifier
 blackButton.onclick = function () {
   classifier.addImage('black');
+  console.log('add Black')
 }
 
 
@@ -86,4 +91,3 @@ function gotResults(err, data) {
 
   classifier.classify(gotResults);
 }
-
